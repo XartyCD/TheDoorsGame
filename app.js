@@ -21,46 +21,100 @@ function godDoor(level=1) {
     doors.forEach(elem => elem.style.display = "none")
 
     if (level <= 5) {
-
-        copyDoors.splice(5, 1) // Обрезаем массив до нужного кол-ва элементов (по уровню сложности)
+        copyDoors = renderingDoors([...doors], 5)
         clickableDoors = [...copyDoors]
-        copyDoors.forEach(elem => elem.style.display = "block")
 
         if (level === 1) {
             chooseDoor(level, winDoors = [...copyDoors], clickableDoors) // Возвращает в winDoors все элементы
             copyDoors = []
     
         } else if (level <= 5) {
-            while (winDoors.length < 3) {
-                let numDoor = copyDoors[Math.floor(Math.random() * copyDoors.length)]
-                winDoors.push(numDoor) // пушим в вин-массив элемент из основного
-                copyDoors.splice(copyDoors.indexOf(numDoor), 1) // удаляем из основного массива выигрышный элемент
-            }
+            structuringArrays(copyDoors, winDoors, 3) // Вызов функции структурирующей основной массив дверей и создающей победные двери без повторных элементов
             chooseDoor(level, winDoors, clickableDoors)
         }
+
     } else if (level >= 6 && level <= 10) {
-        
-        copyDoors.splice(4, 2) // Обрезаем массив до нужного кол-ва элементов (по уровню сложности)
+        copyDoors = renderingDoors([...doors], 4) // Рендерит показ дверей для выбора
         clickableDoors = [...copyDoors]
-        copyDoors.forEach(elem => elem.style.display = "block")
 
         if (level <= 9) {
-            while (winDoors.length < 2) {
-                let numDoor = copyDoors[Math.floor(Math.random() * copyDoors.length)]
-                winDoors.push(numDoor) // пушим в вин-массив элемент из основного
-                copyDoors.splice(copyDoors.indexOf(numDoor), 1) // удаляем из основного массива выигрышный элемент
-            }
+            structuringArrays(copyDoors, winDoors, 2) // Вызов функции структурирующей основной массив дверей и создающей победные двери без повторных элементов
             chooseDoor(level, winDoors, clickableDoors)
+
         } else if (level === 10) {
-            while (winDoors.length < 1) {
-                let numDoor = copyDoors[Math.floor(Math.random() * copyDoors.length)]
-                winDoors.push(numDoor) // пушим в вин-массив элемент из основного
-                copyDoors.splice(copyDoors.indexOf(numDoor), 1) // удаляем из основного массива выигрышный элемент
-            }
+            structuringArrays(copyDoors, winDoors, 1) // Вызов функции структурирующей основной массив дверей и создающей победные двери без повторных элементов
             chooseDoor(level, winDoors, clickableDoors)
         }
+
+    } else if (level >= 11 && level <= 19) {
+        if (level <= 14) {
+            copyDoors = renderingDoors([...doors], 3) // Рендерит показ дверей для выбора
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 2) // Вызов функции структурирующей основной массив дверей и создающей победные двери без повторных элементов
+            chooseDoor(level, winDoors, clickableDoors)
+
+        } else if (level >= 15) {
+            copyDoors = renderingDoors([...doors], 2) // Рендерит показ дверей для выбора
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 1) // Вызов функции структурирующей основной массив дверей и создающей победные двери без повторных элементов
+            chooseDoor(level, winDoors, clickableDoors)
+        }
+
+    } else if (level >= 20 && level <= 30) {
+        if (level === 20) {
+            copyDoors = renderingDoors([...doors], 3) // Рендерит показ дверей для выбора
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 1) // Вызов функции структурирующей основной массив дверей и создающей победные двери без повторных элементов
+            chooseDoor(level, winDoors, clickableDoors)
+
+        } else if (level >= 21 && level <= 25) {
+            copyDoors = renderingDoors([...doors], 6) // Рендерит показ дверей для выбора
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 4)
+            chooseDoor(level, winDoors, clickableDoors)
+
+        } else if (level >= 26) {
+            copyDoors = renderingDoors([...doors], 6)
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 2)
+            chooseDoor(level, winDoors, clickableDoors)
+        }
+
+    } else if (level >= 31 && level <= 40) {
+        if (level >= 31 && level <= 34) {
+            copyDoors = renderingDoors([...doors], 5)
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 2)
+            chooseDoor(level, winDoors, clickableDoors)
+
+        } else if (level === 35) {
+            copyDoors = renderingDoors([...doors], 6)
+            clickableDoors = [...copyDoors]
+
+            
+            structuringArrays(copyDoors, winDoors, 5)
+            chooseDoor(level, winDoors, clickableDoors)
+
+        } else if (level >= 36 && level <= 40) {
+            copyDoors = renderingDoors([...doors], 5)
+            clickableDoors = [...copyDoors]
+
+            structuringArrays(copyDoors, winDoors, 4)
+            chooseDoor(level, winDoors, clickableDoors)
+        }
+    } else {
+        copyDoors = renderingDoors([...doors], 6)
+        clickableDoors = [...copyDoors]
+
+        structuringArrays(copyDoors, winDoors, 3)
+        chooseDoor(level, winDoors, clickableDoors)
     }
-    
     console.log(copyDoors)
     console.log(winDoors)
     
@@ -69,6 +123,21 @@ function godDoor(level=1) {
     badDoors.textContent = copyDoors.length
 }
 // Генерация победных дверей
+
+
+function renderingDoors(copyDoors, count) {
+    copyDoors.splice(count) // Обрезаем массив до нужного кол-ва элементов (по уровню сложности)
+    copyDoors.forEach(elem => elem.style.display = "block")
+    return copyDoors
+}
+
+function structuringArrays(copyDoors, winDoors, countWins) {
+    while (winDoors.length < countWins) {
+        let numDoor = copyDoors[Math.floor(Math.random() * copyDoors.length)]
+        winDoors.push(numDoor) // пушим в вин-массив элемент из основного
+        copyDoors.splice(copyDoors.indexOf(numDoor), 1) // удаляем из основного массива выигрышный элемент
+    }
+}
 
 // Обработка выбранной двери
 function chooseDoor(level, winDoors, clickableDoors) {
@@ -131,7 +200,6 @@ function chooseDoor(level, winDoors, clickableDoors) {
         removeEventListeners()
     }
     door6.addEventListener('click', clickDoor6);
-
 
     // Обработка нажатий клавиш (переброс на как если бы нажимали курсором)
     const keyUpHandler = (event) => {
