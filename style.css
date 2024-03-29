@@ -119,7 +119,7 @@ img {
   display: flex;
   flex-direction: row;
   margin: 26px 0px 32px 0px;
-  font-size: 30px;
+  font-size: 20px;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -139,12 +139,12 @@ img {
 
 .game__count__good {
   background-color: rgba(154, 253, 83, 0.589);
-  right: 120%;
+  right: 130%;
 } 
 
 .game__count__bad {
   background-color: rgba(209, 61, 61, 0.563);
-  left: 120%;
+  left: 130%;
 }
 
 .item-count {
@@ -197,18 +197,121 @@ img {
   height: 80%;
 }
 
-.door__item-3 {
-  display: none;
+@media (max-width: 730px) {
+  .header {
+    min-height: 80px;
+    border-bottom: 2px solid black;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+
+  .header__container {
+    width: 420px;
+  }
+  
+  .header__item {
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: 2px solid white;
+    transition: all 0.5s;
+  }
+
+  .game__count {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    border: 3px solid black;
+  }
+  
+  .game__count__good {
+    right: 110%;
+  } 
+  
+  .game__count__bad {
+    left: 110%;
+  }
+  
+  .item-count {
+    font-size: 40px;
+  }
+
+  .doors__item {
+    font-size: 21px;
+    width: 35%;
+  }
+
+  .doors__item img {
+    width: 78%;
+    height: 78%;
+  }
+
+  .main__game {
+    padding: 0px 3px 40px 3px;
+    border-radius: 40px;
+  }
+
 }
 
-.door__item-4 {
-  display: none;
-}
+@media (max-width: 445px) {
+  .header {
+    padding: 5px 0px;
+    border-bottom: 1px solid black;
+  }
 
-.door__item-5 {
-  display: none;
-}
+  .header__container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .header__item {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 16px;
+  }
+  
+  .game__count {
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    border: 2px solid black;
+  }
 
-.door__item-6 {
-  display: none;
+  .game__level {
+    margin: 15px 0px 20px 0px;
+    font-size: 15px;
+  }
+  
+  .game__count__good {
+    right: 110%;
+  } 
+  
+  .game__count__bad {
+    left: 110%;
+  }
+  
+  .item-count {
+    font-size: 24px;
+  }
+
+  .doors__item {
+    font-size: 16px;
+    width: 32%;
+  }
+
+  .main__game {
+    padding: 0px 3px 25px 3px;
+    border-radius: 30px;
+  }
+
+  .main {
+    padding: 45px 0px;
+  }
+  
+  .result {
+    font-size: 35px;
+    border-radius: 60px;
+    height: 75%;
+  }
+
 }
